@@ -8,8 +8,31 @@
 </head>
 <body>
     <script src="script.js" defer></script>
+    <!-- script is loaded before HTML so we must defer -->
     Hello World!
 
-    <div class="container"></div>
+    <div class="container">
+        <button id="addBook">Add book</button>
+        <form action="" method="post">
+            <div>
+                <label for="title">Book Title</label>
+                <input type="text" id="title">
+            </div>
+            <div>
+                <label for="author">Book Author</label>
+                <input type="text" id="author">
+            </div>
+            <div>
+                <label for="noOfPages">Number of Pages</label>
+                <input type="text" id="noOfPages">
+            </div>
+            <div>
+                <label for="readStatus">Read?</label>
+                <input type="text" id="readStatus">
+            </div>
+        </form>
+        <hr>
+        <div class="library"></div>
+    </div>
 </body>
 </html>

@@ -8,8 +8,8 @@ function Book(title, author, noOfPages, readStatus) {
     this.info = title + " by " + author + ", " + noOfPages + ", " + readStatus;
 }
   
-function addBookToLibrary(book) {
-    myLibrary.push(book);
+function addBookToLibrary(title, author, noOfPages, readStatus) {
+    myLibrary.push(new Book(title, author, noOfPages, readStatus));
 }
 
 function displayLibrary() {
@@ -22,19 +22,47 @@ function displayLibrary() {
     return bookList;
 }
 
-const theHobbit = new Book('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read yet');
-addBookToLibrary(theHobbit);
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read yet');
 
-const harryPotter = new Book('Harry Potter 1', 'J.K. Rowling', '223 pages', 'read');
-addBookToLibrary(harryPotter);
+addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223 pages', 'read');
 
 displayLibrary();
 
-const container = document.querySelector(".container");
-const div = document.createElement("div");
+// div for displaying library
+const library = document.querySelector(".library");
 
-let showLibrary = document.createElement("p");
-showLibrary.textContent = displayLibrary();
+for (let i = 0; i < myLibrary.length; i++) {
+    const card = document.createElement("div");
+    card.classList.add("card");
 
-div.appendChild(showLibrary);
-container.appendChild(div);
+    let title = document.createElement("p");
+    title.classList.add("title");
+    title.textContent = myLibrary[i].title;
+
+    let author = document.createElement("p");
+    author.classList.add("author");
+    author.textContent = myLibrary[i].author;
+
+    let noOfPages = document.createElement("p");
+    noOfPages.classList.add("noOfPages");
+    noOfPages.textContent = myLibrary[i].noOfPages;
+
+    let readStatus = document.createElement("p");
+    readStatus.classList.add("readStatus");
+    readStatus.textContent = myLibrary[i].readStatus;
+
+    card.appendChild(title);
+    card.appendChild(author);
+    card.appendChild(noOfPages);
+    card.appendChild(readStatus);
+    library.appendChild(card);
+}
+
+// add book button
+const addBook = document.querySelector("#addBook");
+
+function handleClick() {
+    alert('It was clicked!');
+}
+
+addBook.addEventListener('click', handleClick);

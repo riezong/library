@@ -1,19 +1,56 @@
 /*  Josh's Custom CSS Reset  https://www.joshwcomeau.com/css/custom-css-reset/*/
 *, *::before, *::after {
     box-sizing: border-box;}
-  * {
+* {
     margin: 0;}
-  body {
-    line-height: 1.5;  -webkit-font-smoothing: antialiased;}
-  img, picture, video, canvas, svg {
+body {
+    line-height: 1.5;  -webkit-font-smoothing: antialiased;
+    font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";}
+img, picture, video, canvas, svg {
     display: block;  max-width: 100%;}
-  input, button, textarea, select {
+input, button, textarea, select {
     font: inherit;}
-  p, h1, h2, h3, h4, h5, h6 {
+p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;}
-  p {
+p {
     text-wrap: pretty;}
-  h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;}
-  #root, #__next {
+#root, #__next {
     isolation: isolate;}
+
+.container {
+    margin: 2rem;
+}
+
+.library {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+}
+
+.card {
+    margin-bottom: .5rem;
+    padding: 1rem;
+    border: 1px solid whitesmoke;
+    border-radius: 4px;
+    box-shadow: 4px 4px 5px rgba(0, 0, 0, .1);
+    background-color: white;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.author {
+    font-style: italic;
+}
+
+.noOfPages, .readStatus {
+    color: grey;
+}
+
+hr {
+    margin: 2rem 0rem;
+}
