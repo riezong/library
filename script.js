@@ -9,6 +9,10 @@ function Book(title, author, noOfPages, readStatus) {
 }
   
 function addBookToLibrary(title, author, noOfPages, readStatus) {
+    if (readStatus === true) {
+        readStatus = "read"}
+        else { readStatus = "not read yet"};
+    noOfPages = noOfPages + " pages";
     myLibrary.push(new Book(title, author, noOfPages, readStatus));
 }
 
@@ -67,20 +71,18 @@ function refreshLibrary() {
 }
 
 // Example books
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read yet');
-addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223 pages', 'read');
-addBookToLibrary('Dune', 'Frank Herbert', '896 pages', 'read');
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
+addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223', 'read');
+addBookToLibrary('Dune', 'Frank Herbert', '896', 'read');
 
 printLibrary();
 
-// "Add book" button
-const addBook = document.querySelector("#addBook");
 // Get a reference to the form element
 const form = document.getElementById("bookForm");
 // Add an event listener for the submit event
 form.addEventListener('submit', function(event) {
     // Get the values of the form elements
-    addBookToLibrary(form.elements.title.value, form.elements.author.value, form.elements.noOfPages.value, form.elements.readStatus.value);
+    addBookToLibrary(form.elements.title.value, form.elements.author.value, form.elements.noOfPages.value, form.elements.readStatus.checked);
     form.reset();
     refreshLibrary();
     event.preventDefault();

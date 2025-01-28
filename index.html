@@ -12,7 +12,6 @@
     Hello World!
 
     <div class="container">
-        <button id="addBook">Add book</button>
         <form id="bookForm">
             <div>
                 <label for="title">Book Title</label>
@@ -24,13 +23,13 @@
             </div>
             <div>
                 <label for="noOfPages">Number of Pages</label>
-                <input type="text" id="noOfPages">
+                <input type="number" id="noOfPages">
             </div>
             <div>
                 <label for="readStatus">Read?</label>
-                <input type="text" id="readStatus">
+                <input type="checkbox" id="readStatus">
             </div>
-            <button type="submit" value="submit" onclick="submitForm()">Submit</button>
+            <button type="submit" value="submit" id="addBook">Submit</button>
         </form>
         <hr>
         <div class="library"></div>
