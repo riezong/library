@@ -70,6 +70,18 @@ function refreshLibrary() {
     printLibrary();
 }
 
+
+const showButton = document.querySelector("#openDialogue");
+const closeButton = document.querySelector("#closeDialog");
+// "Show the dialog" button opens the dialog modally
+showButton.addEventListener("click", () => {
+    dialog.showModal();
+});
+// "Close" button closes the dialog
+closeButton.addEventListener("click", () => {
+    dialog.close();
+});
+
 // Example books
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
 addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223', 'read');
@@ -85,5 +97,6 @@ form.addEventListener('submit', function(event) {
     addBookToLibrary(form.elements.title.value, form.elements.author.value, form.elements.noOfPages.value, form.elements.readStatus.checked);
     form.reset();
     refreshLibrary();
+    dialog.close();
     event.preventDefault();
 });
