@@ -12,11 +12,6 @@ function addBookToLibrary(title, author, noOfPages, readStatus) {
     myLibrary.push(new Book(title, author, noOfPages, readStatus));
 }
 
-// example books
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read yet');
-addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223 pages', 'read');
-addBookToLibrary('Dune', 'Frank Herbert', '896 pages', 'read');
-
 function displayLibrary() {
     const bookList = [];
     for (const book of myLibrary) {
@@ -27,17 +22,17 @@ function displayLibrary() {
     return bookList;
 }
 
-function refreshLibrary() {
-    
-    displayLibrary();
+function clearLibrary() {
+    const library = document.querySelector(".library");
+    while (library.firstChild) {
+        library.removeChild(library.lastChild);
+    }
 }
 
-displayLibrary();
-
-function refreshLibrary() {
-    // div for displaying library
+function printLibrary() {
     const library = document.querySelector(".library");
 
+    // div for displaying library
     for (let i = 0; i < myLibrary.length; i++) {
         const card = document.createElement("div");
         card.classList.add("card");
@@ -66,23 +61,27 @@ function refreshLibrary() {
     }
 }
 
-refreshLibrary();
+function refreshLibrary() {
+    clearLibrary();
+    printLibrary();
+}
 
-// add book button
+// Example books
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295 pages', 'not read yet');
+addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223 pages', 'read');
+addBookToLibrary('Dune', 'Frank Herbert', '896 pages', 'read');
+
+printLibrary();
+
+// "Add book" button
 const addBook = document.querySelector("#addBook");
-
 // Get a reference to the form element
 const form = document.getElementById("bookForm");
 // Add an event listener for the submit event
 form.addEventListener('submit', function(event) {
     // Get the values of the form elements
     addBookToLibrary(form.elements.title.value, form.elements.author.value, form.elements.noOfPages.value, form.elements.readStatus.value);
+    form.reset();
     refreshLibrary();
     event.preventDefault();
 });
-
-// function handleClick() {
-//     alert('It was clicked!');
-// }
-
-// addBook.addEventListener('click', handleClick);
