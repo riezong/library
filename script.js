@@ -71,7 +71,7 @@ function refreshLibrary() {
 }
 
 
-const showButton = document.querySelector("#openDialogue");
+const showButton = document.querySelector("#openDialog");
 const closeButton = document.querySelector("#closeDialog");
 // "Show the dialog" button opens the dialog modally
 showButton.addEventListener("click", () => {
