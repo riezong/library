@@ -33,6 +33,11 @@ function clearLibrary() {
     }
 }
 
+function refreshLibrary() {
+    clearLibrary();
+    printLibrary();
+}
+
 function printLibrary() {
     const library = document.querySelector(".library");
 
@@ -64,18 +69,27 @@ function printLibrary() {
             card.remove();
         });
 
+        let markAsRead = document.createElement("button");
+        markAsRead.classList.add("markAsRead");
+        markAsRead.textContent = "Mark as read";
+        markAsRead.addEventListener("click", () => {
+            if (myLibrary[i].readStatus == "not read yet") {
+                myLibrary[i].readStatus = "read";
+            } else if (myLibrary[i].readStatus == "read") {
+                myLibrary[i].readStatus = "not read yet";
+            }
+            console.log(myLibrary[i].readStatus);
+            refreshLibrary();
+        });
+
         card.appendChild(title);
         card.appendChild(author);
         card.appendChild(noOfPages);
         card.appendChild(readStatus);
         card.appendChild(deleteEntry);
+        card.appendChild(markAsRead);
         library.appendChild(card);
     }
-}
-
-function refreshLibrary() {
-    clearLibrary();
-    printLibrary();
 }
 
 // Example books
