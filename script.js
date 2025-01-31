@@ -45,6 +45,10 @@ function printLibrary() {
     for (let i = 0; i < myLibrary.length; i++) {
         const card = document.createElement("div");
         card.classList.add("card");
+        const cardContent = document.createElement("div");
+        cardContent.classList.add("cardContent");
+        const cardButtons = document.createElement("div");
+        cardButtons.classList.add("cardButtons");
 
         let title = document.createElement("p");
         title.classList.add("title");
@@ -64,7 +68,7 @@ function printLibrary() {
 
         let deleteEntry = document.createElement("button");
         deleteEntry.classList.add("deleteEntry");
-        deleteEntry.textContent = "Delete";
+        deleteEntry.textContent = "X";
         deleteEntry.addEventListener("click", (index => () => {
             card.remove();
             myLibrary.splice(index, 1); // Remove from the array
@@ -74,7 +78,7 @@ function printLibrary() {
 
         let markAsRead = document.createElement("button");
         markAsRead.classList.add("markAsRead");
-        markAsRead.textContent = "Mark as read";
+        markAsRead.textContent = "O";
         markAsRead.addEventListener("click", (index => () => {
             if (myLibrary[index].readStatus == "not read yet") {
                 myLibrary[index].readStatus = "read";
@@ -85,12 +89,14 @@ function printLibrary() {
             refreshLibrary();
         })(i)); //Immediately invoke the function to capture 'i'
 
-        card.appendChild(title);
-        card.appendChild(author);
-        card.appendChild(noOfPages);
-        card.appendChild(readStatus);
-        card.appendChild(deleteEntry);
-        card.appendChild(markAsRead);
+        cardContent.appendChild(title);
+        cardContent.appendChild(author);
+        cardContent.appendChild(noOfPages);
+        cardContent.appendChild(readStatus);
+        cardButtons.appendChild(deleteEntry);
+        cardButtons.appendChild(markAsRead);
+        card.appendChild(cardContent);
+        card.appendChild(cardButtons);
         library.appendChild(card);
     }
 }
@@ -105,7 +111,6 @@ printLibrary();
 // Buttons
 const showButton = document.querySelector("#openDialog");
 const closeButton = document.querySelector("#closeDialog");
-// const deleteEntryButton = document.querySelector(".deleteEntry");
 // "Add Book" button opens the dialog modally
 showButton.addEventListener("click", () => {
     dialog.showModal();
@@ -114,12 +119,6 @@ showButton.addEventListener("click", () => {
 closeButton.addEventListener("click", () => {
     dialog.close();
 });
-// // "Delete" button deletes book from library
-// deleteEntryButton.addEventListener("click", () => {
-//     const library = document.querySelector(".library");
-//     const card = document.querySelector(".card");
-//     library.removeChild(card);
-// });
 
 // Get a reference to the form element
 const form = document.getElementById("bookForm");

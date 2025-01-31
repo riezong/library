@@ -9,16 +9,17 @@
 <body>
     <script src="script.js" defer></script>
     <!-- script is loaded before HTML so we must defer -->
-    Hello World!
 
     <div class="container">
 
-        <button id="openDialog">Add Book</button>
+        <div class="header">
+            <h1>My Library</h1>
+            <button id="openDialog">+</button>
+        </div>
 
         <div>
             <dialog id="dialog">
                 <div class="dialogContent">
-                    <button id="closeDialog">X</button>
                     <form id="bookForm">
                         <div>
                             <label for="title">Book Title</label>
@@ -38,6 +39,7 @@
                         </div>
                         <button type="submit" value="submit" id="addBook">Add Book</button>
                     </form>
+                    <button id="closeDialog">X</button>
                 </div>
             </dialogue>
         </div>
