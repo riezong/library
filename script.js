@@ -65,22 +65,25 @@ function printLibrary() {
         let deleteEntry = document.createElement("button");
         deleteEntry.classList.add("deleteEntry");
         deleteEntry.textContent = "Delete";
-        deleteEntry.addEventListener("click", () => {
+        deleteEntry.addEventListener("click", (index => () => {
             card.remove();
-        });
+            myLibrary.splice(index, 1); // Remove from the array
+            console.log(myLibrary); //Check if the object is deleted from the array
+            //refreshLibrary(); //Optional: Refresh the library after deleting
+        })(i)); // Immediately invoke the function to capture 'i'
 
         let markAsRead = document.createElement("button");
         markAsRead.classList.add("markAsRead");
         markAsRead.textContent = "Mark as read";
-        markAsRead.addEventListener("click", () => {
-            if (myLibrary[i].readStatus == "not read yet") {
-                myLibrary[i].readStatus = "read";
-            } else if (myLibrary[i].readStatus == "read") {
-                myLibrary[i].readStatus = "not read yet";
+        markAsRead.addEventListener("click", (index => () => {
+            if (myLibrary[index].readStatus == "not read yet") {
+                myLibrary[index].readStatus = "read";
+            } else if (myLibrary[index].readStatus == "read") {
+                myLibrary[index].readStatus = "not read yet";
             }
-            console.log(myLibrary[i].readStatus);
+            console.log(myLibrary[index].readStatus);
             refreshLibrary();
-        });
+        })(i)); //Immediately invoke the function to capture 'i'
 
         card.appendChild(title);
         card.appendChild(author);
