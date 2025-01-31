@@ -40,7 +40,7 @@ function printLibrary() {
     const library = document.querySelector(".library");
 
     // div for displaying library
-    for (let i = 0; i < myLibrary.length; i++) {
+    for (const book of myLibrary) {
         const card = document.createElement("div");
         card.classList.add("card");
         const cardContent = document.createElement("div");
@@ -50,42 +50,38 @@ function printLibrary() {
 
         let title = document.createElement("p");
         title.classList.add("title");
-        title.textContent = myLibrary[i].title;
+        title.textContent = book.title;
 
         let author = document.createElement("p");
         author.classList.add("author");
-        author.textContent = myLibrary[i].author;
+        author.textContent = book.author;
 
         let noOfPages = document.createElement("p");
         noOfPages.classList.add("noOfPages");
-        noOfPages.textContent = myLibrary[i].noOfPages;
+        noOfPages.textContent = book.noOfPages;
 
         let readStatus = document.createElement("p");
         readStatus.classList.add("readStatus");
-        readStatus.textContent = myLibrary[i].readStatus;
+        readStatus.textContent = book.readStatus;
 
         let deleteEntry = document.createElement("button");
         deleteEntry.classList.add("deleteEntry");
         deleteEntry.textContent = "X";
-        deleteEntry.addEventListener("click", (index => () => {
+        deleteEntry.addEventListener("click", () => { // No need for closure here
             card.remove();
-            myLibrary.splice(index, 1); // Remove from the array
-            console.log(myLibrary); //Check if the object is deleted from the array
-            //refreshLibrary(); //Optional: Refresh the library after deleting
-        })(i)); // Immediately invoke the function to capture 'i'
+            myLibrary.splice(myLibrary.indexOf(book), 1); // Remove the book object
+            console.log(myLibrary);
+            refreshLibrary(); // Refresh after deletion
+        });
 
         let markAsRead = document.createElement("button");
         markAsRead.classList.add("markAsRead");
         markAsRead.textContent = "O";
-        markAsRead.addEventListener("click", (index => () => {
-            if (myLibrary[index].readStatus == "not read yet") {
-                myLibrary[index].readStatus = "read";
-            } else if (myLibrary[index].readStatus == "read") {
-                myLibrary[index].readStatus = "not read yet";
-            }
-            console.log(myLibrary[index].readStatus);
+        markAsRead.addEventListener("click", () => { // No need for closure
+            book.readStatus = book.readStatus === "not read yet" ? "read" : "not read yet";
+            console.log(book.readStatus);
             refreshLibrary();
-        })(i)); //Immediately invoke the function to capture 'i'
+        });
 
         cardContent.appendChild(title);
         cardContent.appendChild(author);
