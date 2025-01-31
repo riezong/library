@@ -16,16 +16,6 @@ function addBookToLibrary(title, author, noOfPages, readStatus) {
     myLibrary.push(new Book(title, author, noOfPages, readStatus));
 }
 
-function displayLibrary() {
-    const bookList = [];
-    for (const book of myLibrary) {
-        // console.log(book.info);
-        bookList.push(book.info);
-    }
-    console.log(bookList);
-    return bookList;
-}
-
 function clearLibrary() {
     const library = document.querySelector(".library");
     while (library.firstChild) {
@@ -33,12 +23,20 @@ function clearLibrary() {
     }
 }
 
-function refreshLibrary() {
-    clearLibrary();
-    printLibrary();
-}
-
 function printLibrary() {
+
+    myLibrary.sort((a, b) => {
+        const titleA = a.title.toLowerCase(); // Case-insensitive comparison
+        const titleB = b.title.toLowerCase();
+        if (titleA < titleB) {
+          return -1;
+        }
+        if (titleA > titleB) {
+          return 1;
+        }
+        return 0; // Names are equal
+      });
+
     const library = document.querySelector(".library");
 
     // div for displaying library
@@ -101,10 +99,16 @@ function printLibrary() {
     }
 }
 
+function refreshLibrary() {
+    clearLibrary();
+    printLibrary();
+}
+
 // Example books
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', 'not read yet');
-addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223', 'read');
-addBookToLibrary('Dune', 'Frank Herbert', '896', 'read');
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', false);
+addBookToLibrary('Harry Potter and the Chamber of Secrets', 'J.K. Rowling', '223', true);
+addBookToLibrary('Dune', 'Frank Herbert', '896', false);
+addBookToLibrary('The Three-Body Problem', 'Liu Cixin', '390', true);
 
 printLibrary();
 
@@ -131,3 +135,5 @@ form.addEventListener('submit', function(event) {
     dialog.close();
     event.preventDefault();
 });
+
+console.log(myLibrary)
