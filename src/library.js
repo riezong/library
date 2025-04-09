@@ -1,22 +1,8 @@
+import Book from './book';
+
 const myLibrary = [];
 
-// Convert Book constructor to class
-class Book {
-	constructor(title, author, noOfPages, readStatus) {
-		// constructor
-		this.title = title;
-		this.author = author;
-		this.noOfPages = noOfPages;
-		this.readStatus = readStatus;
-	}
-
-	get info() {
-		// getter method
-		this.info = title + ' by ' + author + ', ' + noOfPages + ', ' + readStatus;
-	}
-}
-
-function addBookToLibrary(title, author, noOfPages, readStatus) {
+const addBookToLibrary = function (title, author, noOfPages, readStatus) {
 	if (readStatus === true) {
 		readStatus = 'read';
 	} else {
@@ -24,16 +10,16 @@ function addBookToLibrary(title, author, noOfPages, readStatus) {
 	}
 	noOfPages = noOfPages + ' pages';
 	myLibrary.push(new Book(title, author, noOfPages, readStatus));
-}
+};
 
-function clearLibrary() {
+const clearLibrary = function () {
 	const library = document.querySelector('.library');
 	while (library.firstChild) {
 		library.removeChild(library.lastChild);
 	}
-}
+};
 
-function printLibrary() {
+const printLibrary = function () {
 	myLibrary.sort((a, b) => {
 		const titleA = a.title.toLowerCase(); // Case-insensitive comparison
 		const titleB = b.title.toLowerCase();
@@ -105,53 +91,11 @@ function printLibrary() {
 		card.appendChild(cardButtons);
 		library.appendChild(card);
 	}
-}
+};
 
-function refreshLibrary() {
+const refreshLibrary = function () {
 	clearLibrary();
 	printLibrary();
-}
+};
 
-// Example books
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', false);
-addBookToLibrary(
-	'Harry Potter and the Chamber of Secrets',
-	'J.K. Rowling',
-	'223',
-	true
-);
-addBookToLibrary('Dune', 'Frank Herbert', '896', false);
-addBookToLibrary('The Three-Body Problem', 'Liu Cixin', '390', true);
-
-printLibrary();
-
-// Buttons
-const showButton = document.querySelector('#openDialog');
-const closeButton = document.querySelector('#closeDialog');
-// "Add Book" button opens the dialog modally
-showButton.addEventListener('click', () => {
-	dialog.showModal();
-});
-// "X" button closes the dialog
-closeButton.addEventListener('click', () => {
-	dialog.close();
-});
-
-// Get a reference to the form element
-const form = document.getElementById('bookForm');
-// Add an event listener for the submit event
-form.addEventListener('submit', function (event) {
-	// Get the values of the form elements
-	addBookToLibrary(
-		form.elements.title.value,
-		form.elements.author.value,
-		form.elements.noOfPages.value,
-		form.elements.readStatus.checked
-	);
-	form.reset();
-	refreshLibrary();
-	dialog.close();
-	event.preventDefault();
-});
-
-console.log(myLibrary);
+export { addBookToLibrary, clearLibrary, printLibrary, refreshLibrary };
