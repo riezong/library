@@ -98,4 +98,10 @@ const refreshLibrary = function () {
 	printLibrary();
 };
 
-export { addBookToLibrary, clearLibrary, printLibrary, refreshLibrary };
+export {
+	myLibrary,
+	addBookToLibrary,
+	clearLibrary,
+	printLibrary,
+	refreshLibrary,
+};

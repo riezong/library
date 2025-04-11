@@ -9,7 +9,14 @@ class Book {
 
 	get info() {
 		// getter method
-		this.info = title + ' by ' + author + ', ' + noOfPages + ', ' + readStatus;
+		return (this.info =
+			this.title +
+			' by ' +
+			this.author +
+			', ' +
+			this.noOfPages +
+			', ' +
+			this.readStatus);
 	}
 }
 

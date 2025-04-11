@@ -1,5 +1,10 @@
-import "./style.css";
-import { addBookToLibrary, printLibrary, refreshLibrary } from './library';
+import './style.css';
+import {
+	myLibrary,
+	addBookToLibrary,
+	printLibrary,
+	refreshLibrary,
+} from './library';
 
 // Example books
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', false);
@@ -17,6 +22,8 @@ printLibrary();
 // Buttons
 const showButton = document.querySelector('#openDialog');
 const closeButton = document.querySelector('#closeDialog');
+const dialog = document.querySelector('#dialog');
+
 // "Add Book" button opens the dialog modally
 showButton.addEventListener('click', () => {
 	dialog.showModal();
