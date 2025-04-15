@@ -7,7 +7,7 @@ const formValidation = function () {
 	const noOfPages = document.getElementById('noOfPages');
 	const pageError = document.querySelector('#noOfPages + span.error');
 
-	bookTitle.addEventListener('input', (event) => {
+	bookTitle.addEventListener('input', () => {
 		if (bookTitle.validity.valid) {
 			titleError.textContent = ''; // Remove the message content
 			titleError.className = 'error'; // Removes the `active` class
@@ -17,7 +17,7 @@ const formValidation = function () {
 		}
 	});
 
-	bookAuthor.addEventListener('input', (event) => {
+	bookAuthor.addEventListener('input', () => {
 		if (bookAuthor.validity.valid) {
 			authorError.textContent = ''; // Remove the message content
 			authorError.className = 'error'; // Removes the `active` class
@@ -27,7 +27,7 @@ const formValidation = function () {
 		}
 	});
 
-	noOfPages.addEventListener('input', (event) => {
+	noOfPages.addEventListener('input', () => {
 		if (noOfPages.validity.valid) {
 			pageError.textContent = ''; // Remove the message content
 			pageError.className = 'error'; // Removes the `active` class
