@@ -5,6 +5,7 @@ import {
 	printLibrary,
 	refreshLibrary,
 } from './library';
+import formValidation from './formValidation';
 
 // Example books
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', '295', false);
@@ -49,5 +50,7 @@ form.addEventListener('submit', function (event) {
 	dialog.close();
 	event.preventDefault();
 });
+
+formValidation();
 
 console.log(myLibrary);

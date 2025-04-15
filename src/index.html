@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project: Library</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
-    <script src="script.js" defer></script>
+    <script src="script.js" type="module"></script>
     <!-- script is loaded before HTML so we must defer -->
 
     <div class="container">
@@ -23,15 +23,18 @@
                     <form id="bookForm">
                         <div>
                             <label for="title">Book Title</label>
-                            <input type="text" id="title" required>
+                            <input type="text" id="title" name="title" required minlength="4">
+                            <span class="error" aria-live="polite"></span>
                         </div>
                         <div>
                             <label for="author">Book Author</label>
-                            <input type="text" id="author" required>
+                            <input type="text" id="author" name="author" required minlength="4">
+                            <span class="error" aria-live="polite"></span>
                         </div>
                         <div>
                             <label for="noOfPages">Number of Pages</label>
-                            <input type="number" id="noOfPages" required>
+                            <input type="number" id="noOfPages" name="noOfPages" required>
+                            <span class="error" aria-live="polite"></span>
                         </div>
                         <div>
                             <label for="readStatus">Read?</label>
